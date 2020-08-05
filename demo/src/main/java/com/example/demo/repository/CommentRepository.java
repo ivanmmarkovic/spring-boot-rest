@@ -14,6 +14,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import com.example.demo.domain.Comment;
 
+
 public class CommentRepository implements CommonRepository<Comment> {
 
 	@Autowired
