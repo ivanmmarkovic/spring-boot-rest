@@ -1,6 +1,8 @@
 package com.example.demo.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Article {
 	
@@ -9,10 +11,12 @@ public class Article {
 	private String body;
 	private LocalDateTime createdAt;
 	private LocalDateTime modifiedAt;
+	private List<Comment> comments;
 	
 	public Article() {
 		this.createdAt = LocalDateTime.now();
 		this.modifiedAt = this.createdAt;
+		this.comments = new ArrayList<>();
 	}
 	public Article(String title, String body) {
 		this();
@@ -48,6 +52,12 @@ public class Article {
 	}
 	public void setModifiedAt(LocalDateTime modifiedAt) {
 		this.modifiedAt = modifiedAt;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 	

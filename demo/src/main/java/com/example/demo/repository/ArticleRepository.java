@@ -21,6 +21,8 @@ public class ArticleRepository implements CommonRepository<Article>{
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	private CommentRepository commentRepository;
 	
 	private RowMapper<Article> rowMapper = (ResultSet rs, int rowNumber) -> {
 		Article article = new Article();
@@ -52,7 +54,9 @@ public class ArticleRepository implements CommonRepository<Article>{
 
 	@Override
 	public Article findById(int id) {
-		return this.jdbcTemplate.queryForObject("SELECT * FROM `article` WHERE `id` = ?", this.rowMapper, id);
+		Article article =  this.jdbcTemplate.queryForObject("SELECT * FROM `article` WHERE `id` = ?", this.rowMapper, id);
+		article.setComments(this.commentRepository.findByArticleId(id));
+		return article;
 	}
 
 	@Override
